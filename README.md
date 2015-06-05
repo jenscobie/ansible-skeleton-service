@@ -4,6 +4,7 @@
 
 ## Requirements
 
+* [Python](https://www.python.org/downloads/)
 * [Vagrant](https://www.vagrantup.com/)
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
@@ -14,6 +15,7 @@
 
 ## Usage
 
+    ./go install        Install dependencies
     ./go boot           Spin up a local virtual machine
     ./go install        Install all components to the local virtual machine
     ./go destroy        Destroy the local virtual machine
