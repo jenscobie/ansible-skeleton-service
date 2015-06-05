@@ -1,6 +1,6 @@
 # Skeleton Service Playbook
 
-> Ansible Playbook for deploying the skeleton-service
+> [Ansible](http://www.ansible.com/home) Playbook for deploying the skeleton-service
 
 ## Requirements
 
@@ -11,13 +11,13 @@
 ## Installation
 
 1. Install requirements listed above
-2. ```./go precommit``` to validate the project is setup correctly
+2. ```./go setup``` to validate the project is setup correctly
 
 ## Usage
 
-    ./go install        Install dependencies
+    ./go setup          Install project dependencies
     ./go boot           Spin up a local virtual machine
-    ./go install        Install all components to the local virtual machine
+    ./go deploy         Deploy all components to the local virtual machine
     ./go destroy        Destroy the local virtual machine
     ./go precommit      Run all validations before pushing code
 
