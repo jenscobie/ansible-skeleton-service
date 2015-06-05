@@ -15,11 +15,14 @@
 
 ## Usage
 
-    ./go setup          Install project dependencies
-    ./go boot           Spin up a local virtual machine
-    ./go deploy         Deploy all components to the local virtual machine
-    ./go destroy        Destroy the local virtual machine
-    ./go precommit      Run all validations before pushing code
+    Usage: ./go <command>
+    
+    Available commands are:
+        setup        Install project dependencies
+        boot         Spin up a local virtual machine
+        deploy       Deploy all components to the local virtual machine
+        destroy      Destroy the local virtual machine
+        precommit    Run all validations before pushing code
 
 ## Acceptance Tests
 

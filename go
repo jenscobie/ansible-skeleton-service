@@ -19,13 +19,18 @@ function helptext {
     echo "    precommit    Run all validations before pushing code"
 }
 
+function boot {
+    vagrant up --no-provision
+}
+
 function deploy {
-    vagrant up
+    boot
+    vagrant provision
 }
 
 function setup {
     which pip >/dev/null 2>&1 || sudo easy_install pip
-    pip list | grep ansible  >/dev/null 2>&1 || sudo pip install ansible
+    ansible --version  >/dev/null 2>&1 || sudo pip install ansible
 }
 
 function precommit {
@@ -36,7 +41,7 @@ function precommit {
 [[ $@ ]] || { helptext; exit 1; }
 
 case "$1" in
-    boot) vagrant up --no-provision
+    boot) boot
     ;;
     deploy) deploy
     ;;

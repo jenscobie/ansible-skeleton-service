@@ -1,0 +1,22 @@
+- hosts: webservers
+  user: vagrant
+  sudo: yes
+  tasks:
+
+  - name: Update cache
+    apt: update_cache=yes
+
+  - name: Configure repository
+    apt_repository: repo=ppa:webupd8team/java state=present update_cache=yes
+
+  - name: Accept Oracle license
+    debconf: name=oracle-java8-installer
+             question="shared/accepted-oracle-license-v1-1"
+             value="true"
+             vtype="select"
+
+  - name: Install Java
+    apt: pkg=oracle-java8-installer state=latest
+
+  - name: Set Oracle Java as the default
+    alternatives: name=java path="/usr/lib/jvm/java-8-oracle/jre/bin/java"
