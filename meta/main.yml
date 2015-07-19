@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: "Jen Scobie"
+  description: "Install Skeleton Service, a sample microservice implemented in Java with Dropwizard."
+  license: MIT
+  categories:
+    - development
+dependencies:
+  - { role: geerlingguy.java }

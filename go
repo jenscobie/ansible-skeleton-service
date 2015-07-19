@@ -24,6 +24,8 @@ function boot {
 }
 
 function provision {
+    ansible-galaxy install --role-file=Galaxyfile --roles-path=roles --force
+
     boot
     vagrant provision
 }
