@@ -14,16 +14,16 @@ function helptext {
     echo "Available commands are:"
     echo "    setup        Install project dependencies"
     echo "    boot         Spin up a local virtual machine"
-    echo "    deploy       Deploy all components to the local virtual machine"
     echo "    destroy      Destroy the local virtual machine"
     echo "    precommit    Run all validations before pushing code"
+    echo "    provision    Provision the local virtual machine"
 }
 
 function boot {
     vagrant up --no-provision
 }
 
-function deploy {
+function provision {
     boot
     vagrant provision
 }
@@ -43,13 +43,13 @@ function precommit {
 case "$1" in
     boot) boot
     ;;
-    deploy) deploy
-    ;;
     destroy) vagrant destroy -f
     ;;
     help) helptext
     ;;
     precommit) precommit
+    ;;
+    provision) provision
     ;;
     setup) setup
     ;;

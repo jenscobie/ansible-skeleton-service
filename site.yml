@@ -1,6 +1,6 @@
-- hosts: webservers
-  user: vagrant
+- hosts: all
   sudo: yes
+  
   tasks:
 
   - name: Update cache
