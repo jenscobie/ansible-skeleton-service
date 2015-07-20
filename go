@@ -8,6 +8,13 @@ python -V >/dev/null 2>&1 || { echo >&2 "Python is required. Please install the 
 
 [[ $(vagrant plugin list) == *vagrant-vbguest* ]] || { vagrant plugin install vagrant-vbguest; }
 
+REQUIRED_RUBY=2.1.2
+
+(rbenv versions | grep $REQUIRED_RUBY) || rbenv install $REQUIRED_RUBY
+rbenv local $REQUIRED_RUBY
+(rbenv exec gem list | grep bundler) || rbenv exec gem install bundler
+bundle --path=vendor/bundle --quiet
+
 function helptext {
     echo "Usage: ./go <command>"
     echo ""
@@ -30,14 +37,23 @@ function provision {
     vagrant provision
 }
 
+function destroy {
+    vagrant destroy -f
+}
+
 function setup {
     which pip >/dev/null 2>&1 || sudo easy_install pip
     ansible --version  >/dev/null 2>&1 || sudo pip install ansible
 }
 
+function spec {
+    bundle exec rake spec
+}
+
 function precommit {
     setup
-    deploy
+    provision
+    spec
 }
 
 [[ $@ ]] || { helptext; exit 1; }
@@ -45,7 +61,7 @@ function precommit {
 case "$1" in
     boot) boot
     ;;
-    destroy) vagrant destroy -f
+    destroy) destroy
     ;;
     help) helptext
     ;;
@@ -54,5 +70,7 @@ case "$1" in
     provision) provision
     ;;
     setup) setup
+    ;;
+    spec) spec
     ;;
 esac

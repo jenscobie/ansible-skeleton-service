@@ -5,6 +5,7 @@
 ## Requirements
 
 * [Python](https://www.python.org/downloads/)
+* [rbenv](http://rbenv.org/)
 * [Vagrant](https://www.vagrantup.com/)
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
@@ -18,11 +19,12 @@
     Usage: ./go <command>
     
     Available commands are:
-        setup        Install project dependencies
         boot         Spin up a local virtual machine
-        deploy       Deploy all components to the local virtual machine
         destroy      Destroy the local virtual machine
         precommit    Run all validations before pushing code
+        provision    Provision the local virtual machine
+        setup        Install project dependencies
+        spec         Run acceptance tests against the local virtual machine
 
 ## Acceptance Tests
 
