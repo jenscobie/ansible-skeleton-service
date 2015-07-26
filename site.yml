@@ -1,9 +1,19 @@
 - hosts: all
   sudo: yes
 
+  pre_tasks:
+    - name: Install dependencies
+      yum: "name={{ item }} state=installed"
+      with_items:
+        - libselinux-python
+        - unzip
+
   vars:
     java_packages:
       - java-1.8.0-openjdk
 
   roles:
     - geerlingguy.java
+
+  tasks:
+      - { include: tasks/main.yml }

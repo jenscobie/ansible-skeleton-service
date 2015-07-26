@@ -1,0 +1,17 @@
+---
+- name: Stop the service
+  service: name=skeleton-service state=stopped
+  ignore_errors: yes
+
+- name: Uninstall previous version of the service
+  yum: name=skeleton-service state=absent
+  ignore_errors: yes
+
+- name: Unzip package
+  unarchive: src=dist/skeleton-service.zip dest=/tmp/
+
+- name: Install the new version of the service
+  yum: name=/tmp/skeleton-service-1.0.0-SNAPSHOT.x86_64.rpm state=present
+
+- name: Start the service
+  service: name=skeleton-service state=started enabled=yes
