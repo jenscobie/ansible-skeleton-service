@@ -21,6 +21,7 @@
     Available commands are:
         boot         Spin up a local virtual machine
         destroy      Destroy the local virtual machine
+        execute      Provision EC2 servers
         precommit    Run all validations before pushing code
         provision    Provision the local virtual machine
         setup        Install project dependencies

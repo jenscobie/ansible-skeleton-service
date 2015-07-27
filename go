@@ -19,26 +19,36 @@ function helptext {
     echo "Usage: ./go <command>"
     echo ""
     echo "Available commands are:"
-    echo "    setup        Install project dependencies"
     echo "    boot         Spin up a local virtual machine"
     echo "    destroy      Destroy the local virtual machine"
+    echo "    execute      Provision EC2 servers"
     echo "    precommit    Run all validations before pushing code"
     echo "    provision    Provision the local virtual machine"
+    echo "    setup        Install project dependencies"
+    echo "    spec         Run acceptance tests against the local virtual machine"
 }
 
 function boot {
     vagrant up --no-provision
 }
 
-function provision {
+function install_roles {
     ansible-galaxy install --role-file=Galaxyfile --roles-path=roles --force
+}
 
+function provision {
+    install_roles
     boot
     vagrant provision
 }
 
 function destroy {
     vagrant destroy -f
+}
+
+function execute {
+    install_roles
+    ansible-playbook site.yml -i hosts --private-key ~/.ssh/ec2.pem -u ec2-user
 }
 
 function setup {
