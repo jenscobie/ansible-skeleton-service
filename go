@@ -2,18 +2,18 @@
 
 set -e
 
-VBoxManage -v >/dev/null 2>&1 || { echo >&2 "VirtualBox is required. Please install the latest version."; exit 1; }
-vagrant -v >/dev/null 2>&1 || { echo >&2 "Vagrant is required. Please install the latest version."; exit 1; }
-python -V >/dev/null 2>&1 || { echo >&2 "Python is required. Please install the latest version."; exit 1; }
-
-[[ $(vagrant plugin list) == *vagrant-vbguest* ]] || { vagrant plugin install vagrant-vbguest; }
-
-REQUIRED_RUBY=2.1.2
-
-(rbenv versions | grep $REQUIRED_RUBY) || rbenv install $REQUIRED_RUBY
-rbenv local $REQUIRED_RUBY
-(rbenv exec gem list | grep bundler) || rbenv exec gem install bundler
-bundle --path=vendor/bundle --quiet
+#VBoxManage -v >/dev/null 2>&1 || { echo >&2 "VirtualBox is required. Please install the latest version."; exit 1; }
+#vagrant -v >/dev/null 2>&1 || { echo >&2 "Vagrant is required. Please install the latest version."; exit 1; }
+#python -V >/dev/null 2>&1 || { echo >&2 "Python is required. Please install the latest version."; exit 1; }
+#
+#[[ $(vagrant plugin list) == *vagrant-vbguest* ]] || { vagrant plugin install vagrant-vbguest; }
+#
+#REQUIRED_RUBY=2.1.2
+#
+#(rbenv versions | grep $REQUIRED_RUBY) || rbenv install $REQUIRED_RUBY
+#rbenv local $REQUIRED_RUBY
+#(rbenv exec gem list | grep bundler) || rbenv exec gem install bundler
+#bundle --path=vendor/bundle --quiet
 
 function helptext {
     echo "Usage: ./go <command>"
