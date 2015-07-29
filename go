@@ -73,6 +73,8 @@ case "$1" in
     ;;
     destroy) destroy
     ;;
+    execute) execute
+    ;;
     help) helptext
     ;;
     precommit) precommit
