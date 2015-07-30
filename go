@@ -46,9 +46,20 @@ function destroy {
     vagrant destroy -f
 }
 
-function execute {
+function execute() {
     install_roles
-    ansible-playbook site.yml -i hosts --private-key ~/.ssh/ec2.pem -u ec2-user
+    is_known_environment $1
+    ansible-playbook site.yml -i hosts -l $1 --private-key ~/.ssh/ec2.pem -u ec2-user
+}
+
+function is_known_environment() {
+    case $1 in
+        development|qa|production)
+        ;;
+        *)  echo "$1 not in list of known environments (development|qa|production)"
+            exit 1
+        ;;
+    esac
 }
 
 function setup {
@@ -73,7 +84,7 @@ case "$1" in
     ;;
     destroy) destroy
     ;;
-    execute) execute
+    execute) execute $2
     ;;
     help) helptext
     ;;
